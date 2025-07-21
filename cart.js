@@ -7,17 +7,19 @@ if (!window.Cart) {
             this.loadCart();
         }
 
-        addItem(productId, name, price, image) {
-            const existingItem = this.items.find(item => item.productId === productId);
+        addItem(productId, name, price, image, quantity = 1, size = 'medium') {
+            // Cari item dengan id dan size yang sama
+            const existingItem = this.items.find(item => item.productId === productId && item.size === size);
             if (existingItem) {
-                existingItem.quantity += 1;
+                existingItem.quantity += quantity;
             } else {
                 this.items.push({ 
                     productId, 
                     name,
                     price, 
                     image,
-                    quantity: 1 
+                    quantity, 
+                    size
                 });
             }
             this.saveCart();
@@ -25,13 +27,13 @@ if (!window.Cart) {
             this.updateCartCount();
         }
 
-        removeItem(productId) {
-            const cartItem = document.querySelector(`[data-product-id="${productId}"]`);
+        removeItem(productId, size = 'medium') {
+            const cartItem = document.querySelector(`[data-product-id="${productId}"][data-size="${size}"]`);
             if (cartItem) {
                 cartItem.classList.add('removing');
                 setTimeout(() => {
                     cartItem.remove();
-                    this.items = this.items.filter(item => item.productId !== productId);
+                    this.items = this.items.filter(item => !(item.productId === productId && item.size === size));
                     this.saveCart();
                     this.updateCartCount();
                     
@@ -45,14 +47,14 @@ if (!window.Cart) {
                     const totalElement = document.querySelector('.cart-total');
                     if (totalElement) {
                         const total = this.getTotal();
-                        totalElement.textContent = `Total: $${total.toFixed(2)}`;
+                        totalElement.textContent = `Total: Rp ${total.toLocaleString()}`;
                     }
                 }, 300);
             }
         }
 
-        updateQuantity(productId, quantity) {
-            const item = this.items.find(item => item.productId === productId);
+        updateQuantity(productId, quantity, size = 'medium') {
+            const item = this.items.find(item => item.productId === productId && item.size === size);
             if (item) {
                 item.quantity = quantity;
                 this.saveCart();
@@ -117,10 +119,10 @@ if (!window.Cart) {
                 const itemTotal = item.price * item.quantity;
                 total += itemTotal;
                 return `
-                    <div class="cart-item" data-id="${item.productId}">
+                    <div class="cart-item" data-id="${item.productId}" data-size="${item.size}">
                         <img src="${item.image}" alt="${item.name}">
                         <div class="cart-item-details">
-                            <h3>${item.name}</h3>
+                            <h3>${item.name} <span style='font-size:0.9em;color:#888;'>(${item.size.toUpperCase()})</span></h3>
                             <p class="cart-item-price">Rp ${item.price.toLocaleString()}</p>
                             <div class="quantity-controls">
                                 <button class="quantity-btn minus">-</button>
@@ -150,21 +152,22 @@ if (!window.Cart) {
                 if (!cartItem) return;
 
                 const id = cartItem.dataset.id;
+                const size = cartItem.dataset.size || 'medium';
                 
                 if (e.target.classList.contains('remove-item')) {
-                    this.removeItem(id);
+                    this.removeItem(id, size);
                 } else if (e.target.classList.contains('quantity-btn')) {
                     const input = cartItem.querySelector('.quantity-input');
                     let quantity = parseInt(input.value);
                     
                     if (e.target.classList.contains('minus')) {
-                        quantity = Math.max(0, quantity - 1);
+                        quantity = Math.max(1, quantity - 1);
                     } else if (e.target.classList.contains('plus')) {
                         quantity = quantity + 1;
                     }
                     
                     input.value = quantity;
-                    this.updateQuantity(id, quantity);
+                    this.updateQuantity(id, quantity, size);
                 }
             });
 
@@ -172,7 +175,8 @@ if (!window.Cart) {
                 if (e.target.classList.contains('quantity-input')) {
                     const cartItem = e.target.closest('.cart-item');
                     const id = cartItem.dataset.id;
-                    this.updateQuantity(id, e.target.value);
+                    const size = cartItem.dataset.size || 'medium';
+                    this.updateQuantity(id, e.target.value, size);
                 }
             });
         }
@@ -199,7 +203,7 @@ if (!window.Cart) {
 
             // Add each item to the message
             this.items.forEach(item => {
-                message += `${item.name} (${item.quantity} pcs) - Rp ${(item.price * item.quantity).toLocaleString()}\n`;
+                message += `${item.name} (${item.size.toUpperCase()}, ${item.quantity} pcs) - Rp ${(item.price * item.quantity).toLocaleString()}\n`;
             });
 
             // Add total
@@ -218,32 +222,4 @@ if (!window.Cart) {
     if (!window.cart) {
         window.cart = new Cart();
     }
-}
-
-// Add event listeners to "Add to Cart" buttons
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            const productCard = button.closest('.product-card');
-            const id = productCard.dataset.id;
-            const name = productCard.querySelector('h3').textContent;
-            const price = parseInt(productCard.dataset.price);
-            const image = productCard.querySelector('img').src;
-            
-            cart.addItem(id, name, price, image);
-        });
-    });
-
-    // Checkout button
-    const checkoutButton = document.querySelector('.checkout-button');
-    if (checkoutButton) {
-        checkoutButton.addEventListener('click', () => {
-            cart.checkout();
-        });
-    }
-
-    // Initialize cart display if we're on the cart page
-    if (document.querySelector('.cart-items')) {
-        cart.updateCartDisplay();
-    }
-}); 
+} 

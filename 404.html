@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan | Candlux Studio</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--light-yellow) 0%, var(--white) 100%);
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--duck-yellow);
+            margin: 0;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .error-message {
+            font-size: 1.5rem;
+            margin: 1rem 0 2rem;
+            color: var(--black);
+        }
+
+        .back-home {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--duck-yellow);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-home:hover {
+            background-color: var(--dark-yellow);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .candle-animation {
+            width: 100px;
+            height: 150px;
+            background-color: var(--duck-yellow);
+            border-radius: 50px 50px 0 0;
+            position: relative;
+            margin: 2rem auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .candle-animation::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--dark-yellow);
+            border-radius: 50%;
+            animation: flicker 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="candle-animation"></div>
+        <h1 class="error-code">404</h1>
+        <p class="error-message">Oops! Halaman yang Anda cari tidak ditemukan.</p>
+        <a href="/" class="back-home">Kembali ke Beranda</a>
+    </div>
+</body>
+</html> 
