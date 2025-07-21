@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Bougie De Luxe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="products-page">
+    <nav class="navbar">
+        <div class="logo">Bougie De Luxe</div>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="products.html">Produk</a>
+            <a href="about.html">Tentang</a>
+            <a href="cart.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Product Modal -->
+    <div class="product-modal">
+        <div class="modal-content">
+            <button class="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-product-details">
+                <div class="modal-product-image">
+                    <img id="modalProductImage" src="" alt="Product Image">
+                </div>
+                <div class="modal-product-info">
+                    <h2 id="modalProductName"></h2>
+                    <p id="modalProductDescription" class="modal-product-description"></p>
+                    <div class="modal-product-meta">
+                        <div>
+                            <strong>Aroma:</strong>
+                            <span id="modalProductAroma"></span>
+                        </div>
+                        <div>
+                            <strong>Kategori:</strong>
+                            <span id="modalProductCategory"></span>
+                        </div>
+                    </div>
+                    <div class="modal-product-price" id="modalProductPrice"></div>
+                    <button class="modal-add-to-cart" id="modalAddToCart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add to Cart Options Modal -->
+    <div class="options-modal">
+        <div class="options-content">
+            <button class="close-options">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="options-product-info">
+                <img id="optionsProductImage" src="" alt="Product Image">
+                <div class="options-details">
+                    <h3 id="optionsProductName"></h3>
+                    <p id="optionsProductPrice"></p>
+                </div>
+            </div>
+            <div class="options-form">
+                <div class="option-group">
+                    <label for="product-size">Pilih Ukuran:</label>
+                    <div class="size-options">
+                        <input type="radio" id="size-small" name="size" value="small">
+                        <label for="size-small">
+                            <span class="size-volume">100ml</span>
+                            <span class="size-price">Rp 239.000</span>
+                        </label>
+                        
+                        <input type="radio" id="size-medium" name="size" value="medium" checked>
+                        <label for="size-medium">
+                            <span class="size-volume">200ml</span>
+                            <span class="size-price">Rp 299.000</span>
+                        </label>
+                        
+                        <input type="radio" id="size-large" name="size" value="large">
+                        <label for="size-large">
+                            <span class="size-volume">300ml</span>
+                            <span class="size-price">Rp 359.000</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="option-group quantity-group">
+                    <label for="product-quantity">Jumlah:</label>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" id="product-quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                </div>
+                <div class="total-price">
+                    Total: <span id="optionsTotalPrice">Rp 0</span>
+                </div>
+                <button class="confirm-add-to-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    Tambahkan ke Keranjang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section class="products-page">
+        <h1>Koleksi Kami</h1>
+        
+        <div class="search-filter-container">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Cari produk...">
+            </div>
+            <button class="filter-button" id="filter-popup-btn">
+                <i class="fas fa-filter"></i> Filter
+            </button>
+        </div>
+
+        <div class="filter-popup">
+            <div class="filter-content">
+                <h3>Filter Produk</h3>
+                <span class="close-filter">&times;</span>
+                <div class="filter-group">
+                    <label for="min-price">Harga Minimal (Rp)</label>
+                    <input type="number" id="min-price" placeholder="0">
+                </div>
+                <div class="filter-group">
+                    <label for="max-price">Harga Maksimal (Rp)</label>
+                    <input type="number" id="max-price" placeholder="1000000">
+                </div>
+                <div class="filter-group">
+                    <label for="aroma-filter">Aroma</label>
+                    <select id="aroma-filter">
+                        <option value="">Semua</option>
+                        <option value="fresh">Fresh</option>
+                        <option value="sweet">Sweet</option>
+                    </select>
+                </div>
+                <div class="filter-buttons">
+                    <button class="reset-filter">Reset</button>
+                    <button class="apply-filter">Terapkan</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card" data-id="1" data-price="299000" data-category="relaxation" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?w=500&auto=format" alt="Lavender Dream">
+                </div>
+                <h3>Lavender Dream</h3>
+                <p>Aroma lavender yang menenangkan</p>
+                <div class="product-price">Rp 299.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="2" data-price="299000" data-category="energy" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1608181831718-c9ffd8728e34?w=500&auto=format" alt="Citrus Bliss">
+                </div>
+                <h3>Citrus Bliss</h3>
+                <p>Perpaduan citrus yang menyegarkan</p>
+                <div class="product-price">Rp 299.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="3" data-price="299000" data-category="comfort" data-aroma="sweet">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1639501295122-28c362f2a571?w=500&auto=format" alt="Vanilla Serenity">
+                </div>
+                <h3>Vanilla Serenity</h3>
+                <p>Aroma vanilla yang menenangkan</p>
+                <div class="product-price">Rp 299.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="4" data-price="349000" data-category="relaxation" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=500&auto=format" alt="Ocean Breeze">
+                </div>
+                <h3>Ocean Breeze</h3>
+                <p>Aroma laut yang menyegarkan</p>
+                <div class="product-price">Rp 349.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="5" data-price="349000" data-category="energy" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1636716642701-01754aef1066?w=500&auto=format" alt="Mint Fresh">
+                </div>
+                <h3>Mint Fresh</h3>
+                <p>Aroma mint yang menyegarkan</p>
+                <div class="product-price">Rp 349.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="6" data-price="349000" data-category="comfort" data-aroma="sweet">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1639501295122-28c362f2a571?w=500&auto=format" alt="Honey Delight">
+                </div>
+                <h3>Honey Delight</h3>
+                <p>Aroma madu yang manis</p>
+                <div class="product-price">Rp 349.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="7" data-price="399000" data-category="relaxation" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?w=500&auto=format" alt="Forest Mist">
+                </div>
+                <h3>Forest Mist</h3>
+                <p>Aroma hutan yang menenangkan</p>
+                <div class="product-price">Rp 399.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="8" data-price="399000" data-category="energy" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1608181831718-c9ffd8728e34?w=500&auto=format" alt="Lemon Zest">
+                </div>
+                <h3>Lemon Zest</h3>
+                <p>Aroma lemon yang menyegarkan</p>
+                <div class="product-price">Rp 399.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="9" data-price="399000" data-category="comfort" data-aroma="sweet">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1639501295122-28c362f2a571?w=500&auto=format" alt="Caramel Dream">
+                </div>
+                <h3>Caramel Dream</h3>
+                <p>Aroma karamel yang manis</p>
+                <div class="product-price">Rp 399.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="10" data-price="449000" data-category="relaxation" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=500&auto=format" alt="Mountain Air">
+                </div>
+                <h3>Mountain Air</h3>
+                <p>Aroma pegunungan yang segar</p>
+                <div class="product-price">Rp 449.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="11" data-price="449000" data-category="energy" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1608181831718-c9ffd8728e34?w=500&auto=format" alt="Grapefruit Burst">
+                </div>
+                <h3>Grapefruit Burst</h3>
+                <p>Aroma jeruk bali yang menyegarkan</p>
+                <div class="product-price">Rp 449.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="12" data-price="449000" data-category="comfort" data-aroma="sweet">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1639501295122-28c362f2a571?w=500&auto=format" alt="Coconut Bliss">
+                </div>
+                <h3>Coconut Bliss</h3>
+                <p>Aroma kelapa yang manis</p>
+                <div class="product-price">Rp 449.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="13" data-price="499000" data-category="relaxation" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?w=500&auto=format" alt="Rainforest">
+                </div>
+                <h3>Rainforest</h3>
+                <p>Aroma hutan hujan yang menenangkan</p>
+                <div class="product-price">Rp 499.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="14" data-price="499000" data-category="energy" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1608181831718-c9ffd8728e34?w=500&auto=format" alt="Orange Blossom">
+                </div>
+                <h3>Orange Blossom</h3>
+                <p>Aroma bunga jeruk yang menyegarkan</p>
+                <div class="product-price">Rp 499.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="15" data-price="499000" data-category="comfort" data-aroma="sweet">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1639501295122-28c362f2a571?w=500&auto=format" alt="Chocolate Heaven">
+                </div>
+                <h3>Chocolate Heaven</h3>
+                <p>Aroma cokelat yang manis</p>
+                <div class="product-price">Rp 499.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="16" data-price="549000" data-category="relaxation" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?w=500&auto=format" alt="Bamboo Forest">
+                </div>
+                <h3>Bamboo Forest</h3>
+                <p>Aroma bambu yang menenangkan</p>
+                <div class="product-price">Rp 549.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="17" data-price="549000" data-category="energy" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1608181831718-c9ffd8728e34?w=500&auto=format" alt="Lime Splash">
+                </div>
+                <h3>Lime Splash</h3>
+                <p>Aroma jeruk nipis yang menyegarkan</p>
+                <div class="product-price">Rp 549.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="18" data-price="549000" data-category="comfort" data-aroma="sweet">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1639501295122-28c362f2a571?w=500&auto=format" alt="Berry Sweet">
+                </div>
+                <h3>Berry Sweet</h3>
+                <p>Aroma beri yang manis</p>
+                <div class="product-price">Rp 549.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="19" data-price="599000" data-category="relaxation" data-aroma="fresh">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?w=500&auto=format" alt="Morning Dew">
+                </div>
+                <h3>Morning Dew</h3>
+                <p>Aroma embun pagi yang menenangkan</p>
+                <div class="product-price">Rp 599.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" data-id="20" data-price="599000" data-category="comfort" data-aroma="sweet">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1639501295122-28c362f2a571?w=500&auto=format" alt="Sugar Cookie">
+                </div>
+                <h3>Sugar Cookie</h3>
+                <p>Aroma kue yang manis</p>
+                <div class="product-price">Rp 599.000</div>
+                <div class="product-buttons">
+                    <button class="view-details">
+                        <i class="fas fa-eye"></i>
+                        Lihat Detail
+                    </button>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p>&copy; 2024 Bougie De Luxe. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Load scripts at the end of body -->
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

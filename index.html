@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bougie De Luxe - Lilin Aromaterapi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Bougie De Luxe</div>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="products.html">Produk</a>
+            <a href="about.html">Tentang</a>
+            <a href="cart.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bougie De Luxe</h1>
+            <p>Discover our collection of handcrafted luxury candles</p>
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+        <div class="floating-candle"></div>
+    </section>
+
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Memuat...</p>
+    </div>
+
+    <section class="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card" data-id="1" data-price="299000">
+                <div class="product-image">
+                    <img src="images/candle1.jpg" alt="Lavender Dream">
+                </div>
+                <h3>Lavender Dream</h3>
+                <p>Aroma lavender yang menenangkan</p>
+                <div class="product-price">Rp 299.000</div>
+                <button class="add-to-cart">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card" data-id="2" data-price="299000">
+                <div class="product-image">
+                    <img src="images/candle2.jpg" alt="Citrus Bliss">
+                </div>
+                <h3>Citrus Bliss</h3>
+                <p>Perpaduan citrus yang menyegarkan</p>
+                <div class="product-price">Rp 299.000</div>
+                <button class="add-to-cart">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card" data-id="3" data-price="299000">
+                <div class="product-image">
+                    <img src="images/candle3.jpg" alt="Vanilla Serenity">
+                </div>
+                <h3>Vanilla Serenity</h3>
+                <p>Aroma vanilla yang menenangkan</p>
+                <div class="product-price">Rp 299.000</div>
+                <button class="add-to-cart">Tambah ke Keranjang</button>
+            </div>
+        </div>
+        <div class="view-all">
+            <a href="products.html" class="view-all-button">Lihat Semua Produk</a>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>Bougie De Luxe was born from a passion for creating moments of luxury and relaxation in everyday life. Our journey began in 2020, when our founder discovered the transformative power of carefully crafted candles.</p>
+                <p>Each of our candles is hand-poured with love and attention to detail, using only the finest ingredients. We believe that luxury should be accessible and sustainable, which is why we use eco-friendly materials and ethical sourcing practices.</p>
+            </div>
+            <div class="about-image">
+                <img src="images/about-image.jpg" alt="About Bougie De Luxe">
+            </div>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Unique Scents</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+            </div>
+            <div class="about-cta">
+                <a href="#" class="about-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <div class="values-content">
+            <h2>Nilai & Kualitas Kami</h2>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-heart value-icon"></i>
+                    <h3>Kualitas Premium</h3>
+                    <p>Setiap lilin kami dibuat dengan bahan-bahan terbaik dan proses pembuatan yang teliti untuk memastikan kualitas yang konsisten dan tahan lama.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-leaf value-icon"></i>
+                    <h3>Ramah Lingkungan</h3>
+                    <p>Kami berkomitmen untuk menggunakan bahan-bahan alami dan ramah lingkungan dalam setiap produk kami, tanpa kompromi pada kualitas.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-hand-holding-heart value-icon"></i>
+                    <h3>Kesejahteraan</h3>
+                    <p>Produk kami dirancang untuk meningkatkan kesejahteraan mental dan fisik Anda, menciptakan suasana yang menenangkan dan menyegarkan.</p>
+                </div>
+            </div>
+
+            <div class="values-details">
+                <h3>Komitmen Kami</h3>
+                <p>Di Bougie De Luxe, kami percaya bahwa setiap detail memiliki arti. Dari pemilihan bahan baku hingga proses pembuatan, kami selalu mengutamakan kualitas dan keberlanjutan. Kami berkomitmen untuk memberikan pengalaman terbaik bagi pelanggan kami, tidak hanya melalui produk berkualitas tinggi, tetapi juga melalui layanan yang personal dan perhatian terhadap detail.</p>
+                
+                <div class="values-list">
+                    <div class="value-point">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="value-point-content">
+                            <h4>Bahan Berkualitas</h4>
+                            <p>Menggunakan lilin soy wax premium dan minyak esensial murni untuk hasil terbaik.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="value-point">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="value-point-content">
+                            <h4>Proses Handmade</h4>
+                            <p>Setiap lilin dibuat dengan tangan oleh pengrajin berpengalaman.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="value-point">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="value-point-content">
+                            <h4>Pengujian Ketat</h4>
+                            <p>Setiap batch produk melalui proses pengujian kualitas yang ketat.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="value-point">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="value-point-content">
+                            <h4>Layanan Pelanggan</h4>
+                            <p>Tim dukungan yang siap membantu Anda 24/7 untuk pengalaman belanja terbaik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="faq-content">
+            <h2>Pertanyaan yang Sering Diajukan</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Berapa lama lilin aromaterapi bisa bertahan?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Lilin aromaterapi kami memiliki waktu bakar 40-50 jam, tergantung pada ukuran dan kondisi penggunaan. Kami menggunakan bahan berkualitas tinggi untuk memastikan aroma yang konsisten dan tahan lama.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Apakah lilin aromaterapi aman untuk anak-anak dan hewan peliharaan?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya, lilin kami menggunakan bahan-bahan alami dan aman. Namun, kami tetap menyarankan untuk tidak meninggalkan lilin menyala tanpa pengawasan, terutama di sekitar anak-anak dan hewan peliharaan.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Bagaimana cara merawat lilin aromaterapi?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Untuk hasil terbaik, potong sumbu lilin sebelum setiap penggunaan, biarkan lilin meleleh hingga ke pinggir wadah pada penggunaan pertama, dan simpan di tempat yang sejuk dan kering.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Apakah ada garansi untuk produk?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Kami memberikan garansi kepuasan 30 hari. Jika Anda tidak puas dengan produk kami, Anda dapat mengembalikannya dalam kondisi asli untuk pengembalian dana penuh.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Bagaimana cara memilih aroma yang tepat?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Kami menawarkan berbagai aroma untuk suasana yang berbeda. Untuk relaksasi, pilih lavender atau vanilla. Untuk energi, pilih citrus atau peppermint. Anda juga bisa mencoba sample pack kami untuk menemukan aroma favorit Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p>&copy; 2024 Bougie De Luxe. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
