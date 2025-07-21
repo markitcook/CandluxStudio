@@ -1,4 +1,4 @@
-# Bougie De Luxe - Aromatherapy Candles Website
+# Candlux Studio - Aromatherapy Candles Website
 
 A modern, elegant website for showcasing luxury aromatherapy candles with beautiful animations and a sophisticated design.
 
@@ -12,20 +12,50 @@ A modern, elegant website for showcasing luxury aromatherapy candles with beauti
 - Contact form
 - Mobile-friendly layout
 
+## Project Structure (Baru)
+
+```
+Candlux Studio/
+  assets/
+    images/           # Tempat gambar produk
+  css/
+    styles.css        # Styling global
+    cart.css          # Styling khusus cart
+  js/
+    script.js         # Script global
+    cart.js           # Script cart & keranjang
+    products-data.js  # (Nantinya) Data produk terpusat
+  error/
+    404.html          # Halaman error
+  about.html
+  cart.html
+  index.html
+  products.html
+  README.md
+```
+
 ## Setup Instructions
 
 1. Clone this repository
-2. Add your candle product images to the `images` directory:
+2. Tambahkan gambar produk ke folder `assets/images`:
    - candle1.jpg (Lavender Dream)
    - candle2.jpg (Citrus Bliss)
    - candle3.jpg (Vanilla Serenity)
-3. Open `index.html` in your web browser
+3. Buka `index.html` di browser
+
+## Struktur Folder
+
+- /assets/images : gambar produk
+- /css : file CSS (styles.css, cart.css)
+- /js : file JavaScript (script.js, cart.js)
+- /error : halaman error
+- index.html, about.html, products.html, cart.html : halaman utama
 
 ## Customization
 
-- Colors can be modified in the `:root` section of `styles.css`
-- Product information can be updated in `index.html`
-- Animations can be adjusted in both `styles.css` and `script.js`
+- Warna bisa diubah di `:root` pada `css/styles.css`
+- Data produk akan dikelola di `js/products-data.js`
+- Animasi bisa diubah di `css/styles.css` dan `js/script.js`
 
 ## Technologies Used
 
